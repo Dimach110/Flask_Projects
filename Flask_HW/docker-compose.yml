@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:13.0-alpine
+    ports:
+      - "5431:5432"
+    environment:
+      POSTGRES_USER: user2
+      POSTGRES_PASSWORD: user2psql
+      POSTGRES_DB: advdb
