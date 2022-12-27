@@ -1,3 +1,8 @@
+cachetools==5.2.0
 Flask==2.2.2
-SQLAlchemy==1.4.44
+flask_bcrypt==1.0.1
 psycopg2==2.9.5
+psycopg2_binary==2.9.3
+pydantic==1.10.2
+SQLAlchemy==1.4.45
+sqlalchemy_utils==0.39.0
