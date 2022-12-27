@@ -6,6 +6,17 @@ services:
     ports:
       - "5431:5432"
     environment:
-      POSTGRES_USER: user2
-      POSTGRES_PASSWORD: user2psql
-      POSTGRES_DB: advdb
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+
+#  main:
+#    build:
+#      context: .
+#    environment:
+#      PG_USER: ${PG_USER}
+#      PG_PASSWORD: ${PG_PASSWORD}
+#      PG_HOST: ${PG_HOST}
+#      PG_PORT: ${PG_PORT}
+#      PG_DB: ${PG_DB}
+#      WAIT_HOSTS: ${PG_HOST}:${PG_PORT}

@@ -1,5 +1,6 @@
 from flask import jsonify
-from views import adverView, userView, allUserView, allAdverView
+from views import adverView, userView, allUserView, allAdverView, login
+
 from errors import ApiException
 from app import advApp
 
@@ -14,14 +15,15 @@ def error_handler(error: ApiException):
     return response
 
 # создаём правила обращения к нашим функциям
-advApp.add_url_rule('/users', view_func=allUserView.as_view('users_views'), methods=['GET'])
-advApp.add_url_rule('/users/<int:user_id>', view_func=userView.as_view('user_view'), methods=['GET'])
-advApp.add_url_rule('/users', view_func=userView.as_view('user_create'), methods=['POST'])
-advApp.add_url_rule('/users/<int:user_id>', view_func=userView.as_view('user_update'), methods=['PATCH'])
-advApp.add_url_rule('/users/<int:user_id>', view_func=userView.as_view('user_delete'), methods=['DELETE'])
-advApp.add_url_rule('/advertisement', view_func=allAdverView.as_view('advertisement_view'), methods=['GET'])
-advApp.add_url_rule('/advertisement/<int:adver_id>', view_func=adverView.as_view('advertisements_view'), methods=['GET'])
+advApp.add_url_rule('/login', view_func=login, methods=['POST'])
+advApp.add_url_rule('/users', view_func=allUserView, methods=['GET'])
+advApp.add_url_rule('/users', view_func=userView.as_view('CreateUser'), methods=['POST'])
+advApp.add_url_rule('/users/<int:user_id>', view_func=userView.as_view('user'), methods=['GET', 'PATCH', 'DELETE'])
+advApp.add_url_rule('/advertisement', view_func=allAdverView, methods=['GET'])
 advApp.add_url_rule('/advertisement', view_func=adverView.as_view('advertisement_create'), methods=['POST'])
+advApp.add_url_rule('/advertisement/<int:adver_id>', view_func=adverView.as_view('advertisements_view'),
+                    methods=['GET', 'PATCH', 'DELETE'])
+
 
 
 
